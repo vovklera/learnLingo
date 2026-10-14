@@ -1,0 +1,20 @@
+:root {
+  /* Typography */
+  --font-family: 'Roboto', sans-serif;
+
+  /* Text */
+  --dark-primary: #121417;
+
+  /* Backgrounds */
+  --white: #fff;
+  --light-gray: #f8f8f8;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--dark-primary);
+  background-color: var(--white);
+  margin: 0;
+}
