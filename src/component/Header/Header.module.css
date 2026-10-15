@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  max-width: 1184px;
+
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.headerWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  max-width: 661px;
+}
+
+.logo {
+  display: flex;
+  gap: 8px;
+  padding: 10px 0;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--dark-primary);
+}
+
+.navigation {
+  display: flex;
+  gap: 28px;
+}
+
+.navLink {
+  padding: 14px 0;
+
+  line-height: 1.25;
+  color: var(--dark-primary);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navLink:hover {
+  color: var(--coral-dark);
+}

@@ -1,3 +1,11 @@
+import { Routes } from 'react-router';
+import Header from '../Header/Header';
+
 export default function App() {
-  return null;
+  return (
+    <>
+      <Header />
+      <Routes>{}</Routes>
+    </>
+  );
 }

@@ -1,0 +1,38 @@
+.authBar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.loginButton {
+  display: flex;
+  gap: 8px;
+  padding: 14px 0;
+
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--dark-primary);
+  transition: gap 250ms ease;
+}
+
+.loginButton:hover {
+  gap: 4px;
+}
+
+.registerButton {
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--white);
+  text-align: center;
+
+  width: 166px;
+  height: 48px;
+
+  border-radius: 12px;
+  background-color: var(--dark-primary);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.registerButton:hover {
+  background-color: var(--coral);
+}

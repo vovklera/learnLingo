@@ -8,11 +8,18 @@
   /* Backgrounds */
   --white: #fff;
   --light-gray: #f8f8f8;
+
+  /* Accents */
+  --peach-light: #f4c8ba;
+  --peach: #f0aa8d;
+  --coral: #e17650;
+  --coral-dark: #ca5b38;
 }
 
 body {
   font-family: var(--font-family);
   font-weight: 400;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--dark-primary);
   background-color: var(--white);
