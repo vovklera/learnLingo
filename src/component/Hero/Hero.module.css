@@ -1,0 +1,129 @@
+.heroSection {
+  padding-bottom: 32px;
+}
+
+.heroMain {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.heroContent {
+  width: 100%;
+  padding: 98px 64px;
+  border-radius: 30px;
+  background-color: var(--light-gray);
+
+  width: 720px;
+}
+
+.title {
+  max-width: 550px;
+  margin-bottom: 32px;
+
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+  color: var(--dark-primary);
+}
+
+.highlight {
+  font-weight: 400;
+  font-style: italic;
+  border-radius: 8px;
+  background-color: var(--peach-light);
+}
+
+.description {
+  max-width: 471px;
+  margin-bottom: 64px;
+
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  color: var(--dark-primary);
+}
+
+.getStartBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 267px;
+  height: 60px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.56;
+  color: var(--dark-primary);
+
+  border-radius: 12px;
+  background-color: var(--peach);
+}
+
+/* Hero image */
+
+.heroVisual {
+  width: 568px;
+  border-radius: 30px;
+  background-color: var(--peach-light);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('/images/heroImage.webp');
+}
+
+@media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+  .heroImage {
+    background-image: url('/images/heroImage@2x.webp');
+  }
+}
+
+/* Hero stats */
+
+.stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  padding: 40px 0;
+
+  border-radius: 30px;
+  position: relative;
+}
+
+.statsBorder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.statsItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.statsValue {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--dark-primary);
+}
+
+.statsLabel {
+  width: 96px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: var(--dark-transparent);
+}

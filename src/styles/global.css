@@ -4,6 +4,7 @@
 
   /* Text */
   --dark-primary: #121417;
+  --dark-transparent: rgba(18, 20, 23, 0.7);
 
   /* Backgrounds */
   --white: #fff;

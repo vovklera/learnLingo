@@ -1,11 +1,14 @@
-import { Routes } from 'react-router';
+import { Route, Routes } from 'react-router';
 import Header from '../Header/Header';
+import Hero from '../Hero/Hero';
 
 export default function App() {
   return (
     <>
       <Header />
-      <Routes>{}</Routes>
+      <Routes>
+        <Route path="/" element={<Hero />} />
+      </Routes>
     </>
   );
 }
