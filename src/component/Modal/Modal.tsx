@@ -30,6 +30,11 @@ export default function Modal({ children, labelledBy, onClose }: ModalProps) {
     >
       <div ref={modalRef} tabIndex={-1} className={css.modal}>
         {children}
+        <button type="button" onClick={onClose} className={css.closeBtn}>
+          <svg width="32" height="32" aria-hidden="true">
+            <use href="/icons.svg#close-icon" />
+          </svg>
+        </button>
       </div>
     </div>,
     document.body,

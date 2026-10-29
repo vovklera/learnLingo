@@ -1,16 +1,34 @@
+.inputWrapper {
+  position: relative;
+}
+
 .input {
   height: 54px;
   width: 100%;
   padding: 0 18px;
-  border-radius: 12px;
-  border: 1px solid var(--dark-transparent-10);
 
   line-height: 1.38;
   color: var(--dark-primary);
+  border-radius: 12px;
+  border: 1px solid var(--dark-transparent-10);
 }
 
 .input:not(.errorInput):focus {
   border: 1px solid var(--peach);
+}
+
+.passwordToggle {
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  transform: translateY(-50%);
+}
+
+.eyeIcon {
+  height: 20px;
+  width: 20px;
+  stroke: var(--dark-primary);
+  fill: transparent;
 }
 
 /* Errors */

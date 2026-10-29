@@ -22,3 +22,15 @@
   border-radius: 30px;
   background-color: var(--white);
 }
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  stroke: var(--dark-primary);
+}
+
+.closeBtn:hover {
+  stroke: var(--coral);
+}
