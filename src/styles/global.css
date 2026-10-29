@@ -4,7 +4,14 @@
 
   /* Text */
   --dark-primary: #121417;
-  --dark-transparent: rgba(18, 20, 23, 0.7);
+  --dark-transparent-70: rgba(18, 20, 23, 0.7);
+  --dark-transparent-80: rgba(18, 20, 23, 0.8);
+
+  /* Border */
+  --dark-transparent-10: rgba(18, 20, 23, 0.1);
+
+  /* Error colors */
+  --error-red: #ec383b;
 
   /* Backgrounds */
   --white: #fff;
