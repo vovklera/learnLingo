@@ -1,0 +1,25 @@
+.input {
+  height: 54px;
+  width: 100%;
+  padding: 0 18px;
+  border-radius: 12px;
+  border: 1px solid var(--dark-transparent-10);
+
+  line-height: 1.38;
+  color: var(--dark-primary);
+}
+
+.input:not(.errorInput):focus {
+  border: 1px solid var(--peach);
+}
+
+/* Errors */
+
+.errorInput {
+  color: var(--error-red);
+  border: 1px solid var(--error-red);
+}
+
+.formErrors {
+  color: var(--error-red);
+}
