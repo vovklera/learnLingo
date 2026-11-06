@@ -1,5 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FirebaseError } from 'firebase/app';
+import { auth } from '../../firebase/config';
+import { LOGIN_ERRORS } from '../../constants/authErrors';
 
 import { LoginFormSchema } from '../../validation/LoginFormSchema';
 import FormField from '../FormField/FormField';
@@ -11,6 +17,8 @@ interface FormValues {
 }
 
 export default function LoginForm() {
+  const [error, setError] = useState('');
+
   const { register, handleSubmit, getFieldState, formState } = useForm<FormValues>({
     resolver: yupResolver(LoginFormSchema),
     mode: 'onTouched',
@@ -22,8 +30,17 @@ export default function LoginForm() {
 
   const { isValid, isSubmitting } = formState;
 
-  const onSubmit = (values: FormValues) => {
-    console.log(values);
+  const onSubmit = async ({ email, password }: FormValues) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      console.log('Find user: ', user);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        setError(LOGIN_ERRORS[error.code] ?? 'Something went wrong. Please try again.');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    }
   };
 
   return (
@@ -35,7 +52,15 @@ export default function LoginForm() {
           search for a teacher.
         </p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onFocusCapture={() => {
+          if (error) {
+            setError('');
+          }
+        }}
+        className={css.form}
+      >
         <div className={css.formInputs}>
           <FormField
             name="email"
@@ -55,9 +80,17 @@ export default function LoginForm() {
             formState={formState}
           />
         </div>
-        <button type="submit" className={css.submitButton} disabled={!isValid || isSubmitting}>
-          Log In
-        </button>
+
+        <div className={css.errorWrapp}>
+          {error && (
+            <span className={css.error} role="alert">
+              {error}
+            </span>
+          )}
+          <button type="submit" className={css.submitButton} disabled={!isValid || isSubmitting}>
+            Log In
+          </button>
+        </div>
       </form>
     </>
   );

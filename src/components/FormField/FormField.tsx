@@ -73,7 +73,7 @@ export default function FormField<T extends FieldValues>({
       </div>
 
       {error && (
-        <span id={`${name}-error`} className={css.formErrors}>
+        <span id={`${name}-error`} className={css.formErrors} role="alert">
           {error.message}
         </span>
       )}
