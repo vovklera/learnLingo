@@ -4,14 +4,28 @@ import Modal from '../Modal/Modal';
 import RegistrationForm from '../AuthForm/RegistrationForm';
 import LoginForm from '../AuthForm/LoginForm';
 import css from './AuthNavigation.module.css';
+import { useAuthStore } from '../../store/authStore';
 
 export default function AuthNavigation() {
-  const isAuthed = false;
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
+
   const [modalType, setModalType] = useState<'login' | 'registration' | null>(null);
 
   return (
     <>
-      {!isAuthed && (
+      {user && (
+        <div className={css.userBar}>
+          <button type="button" className={css.userAvatar}>
+            {user.displayName?.charAt(0).toUpperCase()}
+          </button>
+          <button className={css.logoutButton} type="button" onClick={logout}>
+            Log Out
+          </button>
+        </div>
+      )}
+
+      {!user && (
         <ul className={css.authBar}>
           <li>
             <button type="button" className={css.loginButton} onClick={() => setModalType('login')}>
@@ -35,12 +49,12 @@ export default function AuthNavigation() {
       )}
       {modalType === 'login' && (
         <Modal labelledBy="login-title" onClose={() => setModalType(null)}>
-          <LoginForm />
+          {(close) => <LoginForm onSuccess={close} />}
         </Modal>
       )}
       {modalType === 'registration' && (
         <Modal labelledBy="registration-title" onClose={() => setModalType(null)}>
-          <RegistrationForm />
+          {(close) => <RegistrationForm onSuccess={close} />}
         </Modal>
       )}
     </>

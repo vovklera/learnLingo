@@ -1,3 +1,44 @@
+/* userBar */
+
+.userBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.userAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--coral-dark);
+
+  border-radius: 50px;
+  border: 3px solid var(--coral-dark);
+  background-color: var(--peach-pale);
+}
+
+.logoutButton {
+  width: 98px;
+  height: 48px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--white);
+
+  border-radius: 12px;
+  background-color: var(--dark-primary);
+}
+
+/* authBar */
+
 .authBar {
   display: flex;
   gap: 16px;

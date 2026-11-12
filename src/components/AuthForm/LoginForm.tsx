@@ -2,12 +2,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
-import { auth } from '../../firebase/config';
 import { LOGIN_ERRORS } from '../../constants/authErrors';
-
 import { LoginFormSchema } from '../../validation/LoginFormSchema';
+import { getAuthErrorMessage } from '../../utils/authErrors';
+
+import { loginUser } from '../../services/authService';
 import FormField from '../FormField/FormField';
 import css from './AuthForm.module.css';
 
@@ -16,7 +15,11 @@ interface FormValues {
   password: string;
 }
 
-export default function LoginForm() {
+interface LoginFormProps {
+  onSuccess: () => void;
+}
+
+export default function LoginForm({ onSuccess }: LoginFormProps) {
   const [error, setError] = useState('');
 
   const { register, handleSubmit, getFieldState, formState } = useForm<FormValues>({
@@ -31,16 +34,14 @@ export default function LoginForm() {
   const { isValid, isSubmitting } = formState;
 
   const onSubmit = async ({ email, password }: FormValues) => {
-    try {
-      const { user } = await signInWithEmailAndPassword(auth, email, password);
-      console.log('Find user: ', user);
-    } catch (error) {
-      if (error instanceof FirebaseError) {
-        setError(LOGIN_ERRORS[error.code] ?? 'Something went wrong. Please try again.');
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
+    const result = await loginUser(email, password);
+
+    if (!result.success) {
+      setError(getAuthErrorMessage(result.code, LOGIN_ERRORS));
+      return;
     }
+
+    onSuccess();
   };
 
   return (

@@ -2,14 +2,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { FirebaseError } from 'firebase/app';
-import { auth } from '../../firebase/config';
 import { AUTH_ERRORS } from '../../constants/authErrors';
-
 import { RegisterFormSchema } from '../../validation/RegisterFormSchema';
+import { getAuthErrorMessage } from '../../utils/authErrors';
+
+import { registerUser } from '../../services/authService';
 import FormField from '../FormField/FormField';
 import css from './AuthForm.module.css';
+import { useAuthStore } from '../../store/authStore';
 
 interface FormValues {
   name: string;
@@ -17,7 +17,13 @@ interface FormValues {
   password: string;
 }
 
-export default function RegistrationForm() {
+interface RegistrationFormProps {
+  onSuccess: () => void;
+}
+
+export default function RegistrationForm({ onSuccess }: RegistrationFormProps) {
+  const setUser = useAuthStore((state) => state.setUser);
+
   const [error, setError] = useState('');
 
   const { register, handleSubmit, getFieldState, formState } = useForm<FormValues>({
@@ -33,22 +39,14 @@ export default function RegistrationForm() {
   const { isValid, isSubmitting } = formState;
 
   const onSubmit = async ({ name, email, password }: FormValues) => {
-    setError('');
+    const result = await registerUser(name, email, password);
 
-    try {
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-
-      await updateProfile(user, {
-        displayName: name,
-      });
-
-    } catch (error) {
-      if (error instanceof FirebaseError) {
-        setError(AUTH_ERRORS[error.code] ?? 'Something went wrong. Please try again.');
-      } else {
-        setError('Something went wrong. Please try again.');
-      }
+    if (!result.success) {
+      setError(getAuthErrorMessage(result.code, AUTH_ERRORS));
+      return;
     }
+    setUser({ ...result.user });
+    onSuccess();
   };
 
   return (
